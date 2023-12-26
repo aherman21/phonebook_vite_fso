@@ -74,6 +74,9 @@ const App = () => {
       .catch(error => {
         console.log(error.response.data)
         setRnotification(error.response.data.error)
+        setTimeout(() => {
+          setRnotification(null)
+        }, 3000)
       })
 
   
