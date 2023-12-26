@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:3002/persons'
+const baseUrl = 'api/persons'
 
 //for local testing use this url: http://localhost:3002/persons
+//when building use this url: /api/persons
 
 
 const getAll = async () => {
