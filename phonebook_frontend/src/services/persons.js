@@ -1,29 +1,43 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/api/persons'
 
-const getAll = () => {
-  const request = axios.get(baseUrl)
-  return request.then(response => response.data)
+const baseUrl = 'http://localhost:3002/persons'
+
+//for local testing use this url: http://localhost:3002/persons
+
+
+const getAll = async () => {
+  try {
+    const request =  await axios.get(baseUrl)
+    return request.data
+  } catch (error) {
+    console.error('Error getting persons', error)
+    return []
+}
 }
 
-const create = newObject => {
+ const create = async newObject => {
   const request = axios.post(baseUrl, newObject)
-  return request.then(response => response.data)
+  const response = await request
+   return response.data
 }
 
-const update = (id, personObject) => {
+ const update = async (id, personObject) => {
   const request = axios.put(`${baseUrl}/${id}`, personObject)
-  return request.then(response => response.data)
+  const response = await request
+   return response.data
 }
 
-const remove = (id) => {
+ const remove = async (id) => {
     const request = axios.delete(`${baseUrl}/${id}`)
-    return request.then(response => response.data)
+    const response = await request
+   return response.data
 }
 
-export default { 
+const personService = { 
   getAll: getAll, 
   create: create, 
   remove: remove,
   update: update
 }
+
+export default personService
